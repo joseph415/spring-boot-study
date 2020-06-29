@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Posts {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @Column(length = 500, nullable = false)
