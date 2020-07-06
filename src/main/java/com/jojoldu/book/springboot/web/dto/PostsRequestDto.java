@@ -4,18 +4,25 @@ import com.jojoldu.book.springboot.domain.posts.Posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Getter
 @NoArgsConstructor
-public class PostsSaveRequestDto {
+@Getter
+@ToString
+public class PostsRequestDto {
     private String title;
     private String content;
     private String author;
 
     @Builder
-    public PostsSaveRequestDto(String title, String content, String author) {
+    public PostsRequestDto(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    @Builder
+    public PostsRequestDto(String title, String content, String author) {
+        this(title, content);
         this.author = author;
     }
 
