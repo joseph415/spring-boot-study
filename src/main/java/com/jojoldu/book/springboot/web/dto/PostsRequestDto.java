@@ -28,10 +28,10 @@ public class PostsRequestDto {
 
     public Posts toEntity() {
         return Posts.builder()
-            .title(this.title)
-            .content(this.content)
-            .author(this.author)
-            .build();
+                .title(this.title)
+                .content(this.content)
+                .author(this.author)
+                .build();
     }
 }
 

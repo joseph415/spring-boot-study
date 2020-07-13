@@ -10,7 +10,8 @@ import com.jojoldu.book.springboot.web.dto.HelloResponseDto;
 public class HelloController {
 
     @GetMapping("/hello")
-    public HelloResponseDto hello(@RequestParam("name") String name, @RequestParam("amount") int amount) {
+    public HelloResponseDto hello(@RequestParam("name") String name,
+            @RequestParam("amount") int amount) {
 
         return new HelloResponseDto(name, amount);
     }

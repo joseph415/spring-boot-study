@@ -2,6 +2,7 @@ package com.jojoldu.book.springboot.domain.posts;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.Test;
@@ -31,10 +32,10 @@ public class PostsRepositoryTest {
         String content = "테스트 본문";
 
         postsRepository.save(Posts.builder()
-            .title(title)
-            .content(content)
-            .author("jeseok95@gmail.com")
-            .build()
+                .title(title)
+                .content(content)
+                .author("jeseok95@gmail.com")
+                .build()
         );
 
         //when
@@ -44,5 +45,28 @@ public class PostsRepositoryTest {
         Posts post = posts.get(0);
         assertThat(post.getTitle()).isEqualTo(title);
         assertThat(post.getContent()).isEqualTo(content);
+    }
+
+    @Test
+    public void BaseTimeEntity_등록() {
+        //given
+        LocalDateTime now = LocalDateTime.now();
+        postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+
+        System.out.println(">>>>> createData = " + posts.getCreateData() + ", modifiedDate = "
+                + posts.getModifiedData());
+        System.out.println(">>>>>" + now);
+
+        assertThat(posts.getCreateData()).isAfter(now);
+        assertThat(posts.getModifiedData()).isAfter(now);
     }
 }
