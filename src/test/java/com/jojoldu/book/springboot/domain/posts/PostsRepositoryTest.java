@@ -20,6 +20,9 @@ public class PostsRepositoryTest {
     @Autowired
     PostsRepository postsRepository;
 
+    @Autowired
+    MemberRepository memberRepository;
+
     // @After
     // public void cleanUp() {
     //     postsRepository.deleteAll();
@@ -56,11 +59,21 @@ public class PostsRepositoryTest {
                 .content("content")
                 .author("author")
                 .build());
+
+        memberRepository.save(new Member("gkd"));
+
         //when
         List<Posts> postsList = postsRepository.findAll();
 
         //then
         Posts posts = postsList.get(0);
+
+        List<Member> member = memberRepository.findAll();
+
+        Member member1 = member.get(0);
+
+        System.out.println(posts.getId());
+        System.out.println(member1.getId());
 
         System.out.println(">>>>> createData = " + posts.getCreateData() + ", modifiedDate = "
                 + posts.getModifiedData());
